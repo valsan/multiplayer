@@ -19,6 +19,7 @@ public class PlayerHealth : MonoBehaviour
     {
         playerHealth -= amount;
         uiController.SetHealthBar(playerHealth);
+        uiController.DisplayDamageOutline();
         if (playerHealth <= 0)
         {
             // handle death

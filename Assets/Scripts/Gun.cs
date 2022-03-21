@@ -4,19 +4,22 @@ using UnityEngine;
 using Photon.Pun;
 public class Gun : MonoBehaviour
 {
-    ParticleSystem particleSystem;
+    AudioSource gunshotSound;
+    ParticleSystem particleFX;
     PhotonView view;
 
     void Start()
     {
-        particleSystem = GetComponent<ParticleSystem>();
+        particleFX = GetComponent<ParticleSystem>();
         view = GetComponent<PhotonView>();
+        gunshotSound = GetComponent<AudioSource>();
     }
 
     [PunRPC]
     void ShootRemote()
     {
-        particleSystem.Play();
+        particleFX.Play();
+        gunshotSound.Play();
     }
 
     private void OnParticleCollision(GameObject other)

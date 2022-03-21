@@ -69,7 +69,6 @@ public class Player : MonoBehaviour
         if (view.IsMine)
         {
             playerHealth.TakeDamage(10);
-            print("I WAS HIT BY: " + other.name);
         }
     }
 

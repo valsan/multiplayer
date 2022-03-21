@@ -7,22 +7,37 @@ public class PlayerHealth : MonoBehaviour
 {
     int playerHealth = 100;
     UIController uiController;
+    PhotonView view;
 
     private void Start()
     {
+        print("INSTANTIATED");
+        view = GetComponent<PhotonView>();
         uiController = GameObject.Find("Canvas").GetComponent<UIController>();
         uiController.SetHealthBar(playerHealth);
     }
-
-
-    public void TakeDamage(int amount)
+    [PunRPC]
+    void TakeDamageRemote()
     {
-        playerHealth -= amount;
-        uiController.SetHealthBar(playerHealth);
-        uiController.DisplayDamageOutline();
+        print("callerino");
+        playerHealth -= 10;
         if (playerHealth <= 0)
         {
-            // handle death
+            HandleDeath();
         }
+        if (view.IsMine)
+        {
+            uiController.SetHealthBar(playerHealth);
+            uiController.DisplayDamageOutline();
+        }
+    }
+    public void TakeDamage()
+    {
+        print("TAKING DAMAGE IS: " + PhotonNetwork.LocalPlayer.ToString());
+        view.RPC("TakeDamageRemote", RpcTarget.All);
+    }
+    public void HandleDeath()
+    {
+        gameObject.SetActive(false);
     }
 }

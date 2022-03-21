@@ -6,7 +6,6 @@ public class CameraController : MonoBehaviour
 {
     GameObject player;
     float cameraHeight = 15;
-    // Update is called once per frame
     void LateUpdate()
     {
         if(player != null)

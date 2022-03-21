@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
-       if (view.IsMine)
+        if (view.IsMine)
         {
             HandleRightClick();
             SmoothlyRotateHead();
@@ -54,8 +54,8 @@ public class Player : MonoBehaviour
 
     void SmoothlyRotateHead()
     {
-            Quaternion rotGoal = Quaternion.LookRotation(desiredFacingDirection);
-            transform.rotation = Quaternion.Lerp(transform.rotation, rotGoal, rotSpeed * Time.deltaTime);
+        Quaternion rotGoal = Quaternion.LookRotation(desiredFacingDirection);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rotGoal, rotSpeed * Time.deltaTime);
     }
 
     void HandleMovement()
@@ -66,10 +66,6 @@ public class Player : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
-        if (view.IsMine)
-        {
-            playerHealth.TakeDamage(10);
-        }
+        playerHealth.TakeDamage();
     }
-
 }

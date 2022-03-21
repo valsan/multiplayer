@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Photon.Pun;
 public class UIController : MonoBehaviour
 {
     [SerializeField] TMP_Text health;
+    [SerializeField] TMP_Text players;
     [SerializeField] Image damageImage;
 
     private void Start()
